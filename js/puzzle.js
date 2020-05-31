@@ -1,4 +1,4 @@
-var scale_factor = 7.4;
+var scale_factor = 7.5;
 var all_puzzle_piece_shapes = [
     "0,0 10,0 10,10 30,10 30,20 10,20 10,30 0,30",
     "0,0 10,0 10,10 20,10 20,20 10,20 10,40 0,40",

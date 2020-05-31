@@ -5,18 +5,61 @@
     <meta charset="utf-8"/>
     <meta name="google-site-verification" content="50njPBoS9wHYXjbuDbgqeqVBVxCoHmgNB37YAtnEWeQ" />
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/puzzle.css">
     <link rel="icon" type="image/png" href="icon.png"/>
     <script src="js/puzzle.js"></script>
   </head>
   <body>
 
-    <div class="center">
+    <div>
       <h1 id="name">Puzzle</h1>
     </div>
 
-    <script>
+    <!-- <script>
       make_outline();
-    </script>
+    </script> -->
+    <div class="whole_page">
+
+      <div id="instruction_container">
+        <span>Drag the puzzle pieces to move them around.</span><br>
+        <span>Drag the puzzle pieces to move them around TODO FIX.</span>
+      </div>
+
+      <div id="puzzle_container">
+
+        <!-- MAKE OUTLINE -->
+        <div>
+          <svg width="500" height="500">
+            <rect x="20" y="10" width="450" height="450"
+            style="fill:white;stroke:black;stroke-width:5;opacity:1" />
+
+          </svg>
+        </div>
+
+        <!-- MAKE PIECES -->
+
+        <!-- T BLOCK -->
+        <div class="draggable">
+          <svg width="120" height="120">
+            <polygon points="0,0 40,0 40,40 120,40 120,80 40,80 40,120 0,120"
+            style="fill:lime;" />
+          </svg>
+        </div>
+
+        <!-- Y BLOCK -->
+        <div class="draggable">
+          <svg width="160" height="160">
+            <polygon points="0,0 40,0 40,40 80,40 80,80 40,80 40,160 0,160"
+            style="fill:blue;" />
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
 
   </body>
+
+  <script src="js/draggable.js"></script>
+
 </html>

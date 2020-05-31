@@ -1,5 +1,14 @@
 //TAKEN FROM https://www.w3schools.com/howto/howto_js_draggable.asp
 
+//Make the DIV element draggagle:
+var draggable_elements = document.getElementsByClassName("draggable");
+var deg=90;
+for (var i = 0; i < draggable_elements.length; i++) {
+  // draggable_elements[i].style.transform = 'rotate('+deg+'deg)';
+  draggable_elements[i].style.transform = 'translate(' + 100*i + 'px, -400px)';
+  dragElement(draggable_elements[i]);
+}
+
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   elmnt.onmousedown = dragMouseDown;
@@ -33,11 +42,4 @@ function dragElement(elmnt) {
     document.onmouseup = null;
     document.onmousemove = null;
   }
-}
-
-//Make the DIV element draggagle:
-draggable_elements = document.getElementsByClassName("draggable");
-for (var i = 0; i < draggable_elements.length; i++) {
-  console.log(draggable_elements[i]);
-  dragElement(draggable_elements[i]);
 }

@@ -17,10 +17,14 @@
 
 .draggable {
   position: absolute;
-  border: 1px solid #d3d3d3;
+  /* border: 1px solid #d3d3d3; */
   text-align: center;
   cursor: move;
   color: #fff;
   padding: 10px;
   z-index: 10;
+}
+
+.selected {
+  border: 1px solid #ffa500;
 }

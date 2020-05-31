@@ -1,44 +1,78 @@
-var all_puzzle_pieces = [];
+var scale_factor = 7.4;
+var all_puzzle_piece_shapes = [
+    "0,0 10,0 10,10 30,10 30,20 10,20 10,30 0,30",
+    "0,0 10,0 10,10 20,10 20,20 10,20 10,40 0,40",
+    "0,0 10,0 10,10 20,10 20,20 30,20 30,30 10,30 10,20 0,20",
+    "0,0 10,0 10,10 30,10 30,20 20,20 20,30 10,30 10,20 0,20",
+    "0,0 10,0 10,10 30,10 30,20 20,20 20,30 10,30 10,20 0,20",
+];
+var all_puzzle_piece_colors = [
+    "lime",
+    "blue",
+    "green",
+    "red",
+    "pink"
+];
 function make_outline() {
-    //build object
-    var outline = new PuzzlePiece("outline", [100, 100]);
+    document.write('<div><svg width="500" height="500">');
+    document.write('<rect x="20" y="10" width="450" height="450" style="fill:white;stroke:black;stroke-width:5;opacity:1" />');
+    document.write('</svg></div>');
+    /* <div>
+      <svg width="500" height="500">
+        <rect x="20" y="10" width="450" height="450"
+        style="fill:white;stroke:black;stroke-width:5;opacity:1" />
+      </svg>
+    </div> */
 }
-var PuzzlePiece = /** @class */ (function () {
-    function PuzzlePiece(name, position) {
-        this.id = PuzzlePiece.id_counter;
-        PuzzlePiece.id_counter += 1;
-        this.name = name;
-        this.position = position;
-        this.rotation = 0;
-        this.flip = false;
-        all_puzzle_pieces.push(this);
+function make_pieces() {
+    /* <div id="block_0" class="draggable" onclick="set_selected('block_0')">
+      <svg width="120" height="120">
+        <polygon points="0,0 40,0 40,40 120,40 120,80 40,80 40,120 0,120"
+        style="fill:lime;" />
+      </svg>
+    </div>  */
+    for (var i = 0; i < all_puzzle_piece_shapes.length; i++) {
+        document.write('<div id="block_' + i + '" class="draggable" onclick="set_selected(\'block_' + i + '\')">');
+        var scaled_coords = get_scaled_coords(all_puzzle_piece_shapes[i]);
+        var scaled_width = get_scaled_width(scaled_coords);
+        var scaled_height = get_scaled_height(scaled_coords);
+        document.write('<svg width="' + scaled_width + '" height="' + scaled_height + '"> <polygon points="' + scaled_coords + '" style="fill:' + all_puzzle_piece_colors[i] + ';" /> </svg> </div>');
     }
-    PuzzlePiece.prototype.draw = function () {
-        switch (this.name) {
-            case "outline":
-                this.draw_outline(this.position, this.rotation, this.flip);
-                break;
-            case "":
-                break;
-            default:
-                console.log("error: invalid shape name");
+}
+function get_scaled_width(points) {
+    var points_to_coords = points.split(" ");
+    var max_x = 0;
+    for (var i = 0; i < points_to_coords.length; i++) {
+        var coords = points_to_coords[i].split(",");
+        var x = parseInt(coords[0]);
+        if (x > max_x) {
+            max_x = x;
         }
-    };
-    PuzzlePiece.prototype.draw_outline = function (position, rotation, flip) {
-        //TODO draw outline
-    };
-    PuzzlePiece.prototype.draw_t_block = function (position, rotation, flip) {
-        //TODO draw t block
-    };
-    PuzzlePiece.prototype.draw_w_block = function (position, rotation, flip) {
-        //TODO draw t block
-    };
-    PuzzlePiece.prototype.draw_f_block = function (position, rotation, flip) {
-        //TODO draw t block
-    };
-    PuzzlePiece.prototype.draw_y_block = function (position, rotation, flip) {
-        //TODO draw t block
-    };
-    PuzzlePiece.id_counter = 0;
-    return PuzzlePiece;
-}());
+    }
+    return max_x;
+}
+function get_scaled_height(points) {
+    var points_to_coords = points.split(" ");
+    var max_y = 0;
+    for (var i = 0; i < points_to_coords.length; i++) {
+        var coords = points_to_coords[i].split(",");
+        var y = parseInt(coords[1]);
+        if (y > max_y) {
+            max_y = y;
+        }
+    }
+    return max_y;
+}
+function get_scaled_coords(points) {
+    var points_to_coords = points.split(" ");
+    var points_to_return = '';
+    for (var i = 0; i < points_to_coords.length; i++) {
+        var coords = points_to_coords[i].split(",");
+        var x = parseInt(coords[0]), y = parseInt(coords[1]);
+        if (i != 0) {
+            points_to_return += " ";
+        }
+        points_to_return += x * scale_factor + "," + y * scale_factor;
+    }
+    return points_to_return;
+}

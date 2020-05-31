@@ -1,11 +1,58 @@
 //TAKEN FROM https://www.w3schools.com/howto/howto_js_draggable.asp
 
+var selected_element;
+var rotate_dict = {};
+var degree_increment = 3;
+
+window.addEventListener('keydown', function(e) { key_press(e); });
+
+function key_press(e) {
+  // alert(e.keyCode);
+  switch(e.keyCode) {
+    case 37: //left key
+      //maybe translate left in the future
+      break;
+    case 38: //up key
+    //maybe translate up in the future
+      break;
+    case 39: //right key
+    //maybe translate right in the future
+      break;
+    case 40: //down key
+    //maybe translate down in the future
+      break;
+    case 88: //x key
+      if (selected_element) {
+        rotate_selected_element("right");
+      }
+      break;
+    case 90: //z key
+      if (selected_element) {
+        rotate_selected_element("left");
+      }
+      break;
+    default:
+      // do nothing
+  }
+}
+
+function set_selected(id) {
+  if (selected_element) {
+    selected_element.classList.toggle("selected");
+  }
+  selected_element = document.getElementById(id);
+  selected_element.classList.toggle("selected");
+}
+
+function rotate_selected_element(direction) {
+  rotate_dict[selected_element.id] += (direction == 'right' ? degree_increment : (direction == 'left' ? -degree_increment : 0));
+  selected_element.style.transform = 'rotate('+rotate_dict[selected_element.id]+'deg)';
+}
+
 //Make the DIV element draggagle:
 var draggable_elements = document.getElementsByClassName("draggable");
-var deg=90;
 for (var i = 0; i < draggable_elements.length; i++) {
-  // draggable_elements[i].style.transform = 'rotate('+deg+'deg)';
-  draggable_elements[i].style.transform = 'translate(' + 100*i + 'px, -400px)';
+  rotate_dict[draggable_elements[i].id] = 0;
   dragElement(draggable_elements[i]);
 }
 

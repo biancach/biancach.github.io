@@ -91,6 +91,13 @@ function dragElement(elmnt) {
   }
 }
 
+function clear_selected_element() {
+  selected_element.classList.toggle("selected");
+  selected_element = null;
+}
+
+document.getElementById('puzzle_container').onclick = clear_selected_element;
+
 //TODO: this does allow dragging but theres no rotating without a keyboard and it disables clicking, so i'm getting rid of it for now
 // function touchHandler(event) {
 //     var touch = event.changedTouches[0];

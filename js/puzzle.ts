@@ -1,4 +1,4 @@
-var scale_factor = 7.4;
+var scale_factor = 7.7;
 
 var all_puzzle_piece_shapes: string[] = [
   "0,0 10,0 10,10 30,10 30,20 10,20 10,30 0,30",
@@ -15,7 +15,6 @@ var all_puzzle_piece_colors: string[] = [
   "red",
   "pink"
 ];
-
 
 function make_outline() {
   document.write('<div><svg width="500" height="500">');

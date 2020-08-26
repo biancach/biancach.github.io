@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Champenois</title>
+    <meta charset="utf-8"/>
+    <meta name="google-site-verification" content="50njPBoS9wHYXjbuDbgqeqVBVxCoHmgNB37YAtnEWeQ" />
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/puzzle.css">
+    <link rel="icon" type="image/png" href="icon.png"/>
+    <script src="js/puzzle.js"></script>
+  </head>
+  <body>
+
+    <div>
+      <h1 id="name">Puzzle</h1>
+    </div>
+
+    <div class="whole_page">
+
+      <div id="instruction_container">
+        <span>Drag the puzzle pieces to move them around.</span><br>
+        <span>Click or drag pieces to select them.</span><br>
+        <span>Once they're selected, use 'Z' and 'X' to rotate the pieces.</span>
+
+        <!-- MAKE PIECES -->
+        <script>
+          make_pieces();
+        </script>
+
+      </div>
+
+      <div id="puzzle_container">
+
+        <!-- MAKE OUTLINE -->
+        <script>
+          make_outline();
+        </script>
+
+      </div>
+    </div>
+
+
+  </body>
+
+  <script src="js/draggable.js"></script>
+
+</html>

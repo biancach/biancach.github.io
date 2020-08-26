@@ -1,0 +1,30 @@
+
+
+.whole_page {
+  box-sizing: border-box;
+}
+
+#instruction_container {
+  width: 39%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#puzzle_container {
+  width: 59%;
+  display: inline-block;
+}
+
+.draggable {
+  position: absolute;
+  /* border: 1px solid #d3d3d3; */
+  text-align: center;
+  cursor: move;
+  color: #fff;
+  padding: 10px;
+  z-index: 10;
+}
+
+.selected {
+  border: 1px solid #ffa500;
+}

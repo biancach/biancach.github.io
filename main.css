@@ -2,6 +2,46 @@ html {
   font-family: sans-serif;
   height: 100%;
   margin: 0;
+  padding-bottom: 150px; /* Retained increased padding at the bottom */
+}
+
+a {
+  color: blue;
+}
+
+a:visited {
+  color: blue;
+}
+
+.center {
+  margin: 10px 100px 10px 100px;
+/*  max-width: 1000px;*/
+  max-width: auto;
+}
+
+.footer {
+  margin-top: 50px;
+}
+
+img {
+  max-width: 75%;
+  height: auto;
+  padding-bottom: 100px;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+dd {
+  margin-top: 0;
+}
+
+
+/*html {
+  font-family: sans-serif;
+  height: 100%;
+  margin: 0;
   margin-bottom: 50px;
 }
 
@@ -34,4 +74,4 @@ h2 {
 
 dd  {
      margin-TOP: 0;
-}
+}*/

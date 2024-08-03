@@ -8,13 +8,12 @@
         body {
             font-family: sans-serif;
             margin: 0;
-            padding-top: 30px;
-            padding-right: 200px;
-            padding-left: 30px;
+            padding: 30px 200px 30px 30px; /* Adjusted padding */
             background-color: #f9f9f9;
         }
         .container {
             display: flex;
+            align-items: flex-start; /* Align to top */
             max-width: auto;
             margin: 0 auto;
         }
@@ -48,12 +47,12 @@
         }
         .thermometer-text {
             position: absolute;
-            top: -20px; /* Adjust this value to move the text up */
+            top: -30px; /* Adjusted value to place the text above the thermometer */
             width: 100%;
             text-align: center;
             padding: 0 10px;
             border-radius: 5px;
-            color: #000000; /* White text color for better contrast */
+            color: #000000; /* Black text color for better contrast */
             font-size: 16px;
             font-weight: bold;
         }
@@ -104,12 +103,50 @@
             color: #555;
         }
         a {
-        color: blue;
+            color: blue;
+        }
+        a:visited {
+            color: blue;
+        }
+        .graph-container {
+            margin-top: 40px;
+            position: relative;
+            width: 100%; /* Make the container full width */
+        }
+        canvas {
+            border: 1px solid #ddd;
+            background-color: #ffffff;
+            display: block; /* Ensure canvas takes the full width */
+        }
+        .axis-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        .x-axis-label {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 5px;
+        }
+        .y-axis-label {
+            position: absolute;
+            top: 75%;
+            left: 30px;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left top;
+            margin-left: 10px;
+        }
+        .y-axis-label.money {
+            left: auto;
+            right: 30px;
+            top: 70%;
+            transform: translateY(-50%) rotate(90deg);
+            transform-origin: right bottom;
         }
 
-        a:visited {
-        color: blue;
-        }
     </style>
 </head>
 <body>
@@ -118,13 +155,11 @@
             <h1>Fundraiser for the Women's Prison Association!</h1>
             <p>On November 3rd, 2024, I will be running 26.2 miles for the Women's Prison Association. Please consider donating :)</p>
             <p>The Women's Prison Association (WPA) provides support for formerly incarcerated women and alternatives for currently incarcerated women. For the last 175 years, the WPA has addressed many of the challenges that lead to incarceration by providing women with case management, employment assistance, and housing among other things. I am happy to chat with you about the cause if you want to learn more.</p>
-            <p>My goal is to raise $3000. If you want me to double your donation via corporate matching, you can Venmo me <a href=https://venmo.com/u/BiancaChamp>@BiancaChamp</a>, and I will donate the money in your honor. Otherwise, <a href="https://givebutter.com/wpamarathon2024/biancachampenois">here</a> is the main donation page.
-
-            </p>
+            <p>My goal is to raise $3000. If you want me to double your donation via corporate matching, you can Venmo me <a href="https://venmo.com/u/BiancaChamp">@BiancaChamp</a>, and I will donate the money in your honor. Otherwise, <a href="https://givebutter.com/wpamarathon2024/biancachampenois">here</a> is the main donation page.</p>
         </div>
         <div class="thermometer-container">
-            <div class="thermometer" id="thermometer"> <!-- Thermometer ID for JavaScript -->
-                <div class="thermometer-text"> <!-- New text container -->
+            <div class="thermometer" id="thermometer">
+                <div class="thermometer-text"> <!-- Text container for thermometer -->
                     <!-- Text will be updated by JavaScript -->
                 </div>
             </div>
@@ -155,8 +190,14 @@
             </div>
         </div>
     </div>
+    <div class="graph-container">
+        <canvas id="myGraph"></canvas>
+        <div class="x-axis-label axis-label">Weeks</div>
+        <div class="y-axis-label axis-label">Miles per Week</div>
+        <div class="y-axis-label money axis-label">Money Raised $</div>
+    </div>
+    
     <script>
-        // Function to set the thermometer height and text
         function updateThermometer(donationAmount) {
             const goalAmount = 3000; // Total goal amount
             const thermometer = document.getElementById('thermometer');
@@ -172,6 +213,102 @@
 
         // Example usage
         updateThermometer(50); // Set this to the current donation amount
+        
+        function drawGraph() {
+            const canvas = document.getElementById('myGraph');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas size based on container
+            canvas.width = document.querySelector('.graph-container').offsetWidth;
+            canvas.height = 300;
+
+            const weeks = Array.from({ length: 16 }, (_, i) => i + 1);
+            const miles = [21, 20, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const money = [0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            const xoffset = 200
+            const yoffset = 100
+            const xAxisWidth = canvas.width - xoffset;
+            const yAxisHeight = canvas.height - yoffset;
+
+            // Draw X and Y axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+
+            // X-axis
+            ctx.beginPath();
+            ctx.moveTo(xoffset/2, yAxisHeight + yoffset/2);
+            ctx.lineTo(xAxisWidth + xoffset/2, yAxisHeight + yoffset/2);
+            ctx.stroke();
+
+            // Y-axis for miles
+            ctx.beginPath();
+            ctx.moveTo(xoffset/2, yoffset/2);
+            ctx.lineTo(xoffset/2, yAxisHeight + yoffset/2);
+            ctx.stroke();
+
+            // Draw miles data
+            ctx.strokeStyle = '#1c2850';
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            weeks.forEach((week, index) => {
+                const x = xoffset/2 + (xAxisWidth / (weeks.length - 1)) * index;
+                const y = yAxisHeight + yoffset/2 - (yAxisHeight / (xoffset/2)) * miles[index];
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+
+            // Draw money data
+            ctx.strokeStyle = '#b0314a';
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            weeks.forEach((week, index) => {
+                const x = xoffset/2 + (xAxisWidth / (weeks.length - 1)) * index;
+                const y = yAxisHeight + yoffset/2 - (yAxisHeight / 3000) * money[index];
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+
+            // Draw X-axis labels
+            ctx.fillStyle = '#333';
+            ctx.font = '14px Arial';
+            weeks.forEach((week, index) => {
+                const x = xoffset/2 + (xAxisWidth / (weeks.length - 1)) * index;
+                ctx.fillText(`${week}`, x, yAxisHeight + yoffset/2 + 20);
+            });
+
+            // Draw Y-axis labels for miles
+            ctx.fillStyle = '#1c2850';
+            ctx.font = '12px Arial';
+            const maxmiles = 50
+            for (let i = 0; i <= maxmiles; i += 5) {
+                const y = yAxisHeight - (yAxisHeight / maxmiles) * i;
+                ctx.fillText(i, xoffset/2 - 20, y+yoffset/2);
+            }
+
+            // Draw Y-axis labels for money
+            ctx.fillStyle = '#b0314a';
+            ctx.font = '12px Arial';
+            for (let i = 0; i <= 3000; i += 300) {
+                const y = yAxisHeight - (yAxisHeight / 3000) * i;
+                ctx.fillText(`$${i}`, xoffset/2 + xAxisWidth + 10, y+yoffset/2);
+            }
+        }
+
+        drawGraph();
+        window.addEventListener('resize', drawGraph); // Redraw on window resize
+
+                
     </script>
 </body>
 </html>

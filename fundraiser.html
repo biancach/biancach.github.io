@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .content {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .thermometer-container {
+            width: 150px; /* Made the thermometer wider */
+            height: 400px; /* Increased height */
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            position: relative;
+            margin-top: 20px;
+        }
+        .thermometer {
+            background-color: rgb(176, 49, 74); /* Updated color */
+            width: 100%;
+            height: 0;
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ffffff; /* White text color for better contrast */
+            font-size: 16px;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+        .thermometer-text {
+            position: absolute;
+            top: -20px; /* Adjust this value to move the text up */
+            width: 100%;
+            text-align: center;
+            padding: 0 10px;
+            border-radius: 5px;
+            color: #000000; /* White text color for better contrast */
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .thermometer-markers {
+            position: absolute;
+            right: -60px; /* Adjusted to match the new width */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 5px 0; /* Adjusted to move markers up by 5px */
+        }
+        .thermometer-markers span {
+            font-size: 14px;
+        }
+        .thermometer-lines {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Ensure lines don't interfere with thermometer height adjustment */
+        }
+        .thermometer-lines div {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.3); /* Light gray line color */
+            left: 0;
+        }
+        .line-90 { top: 10%; }
+        .line-80 { top: 20%; }
+        .line-70 { top: 30%; }
+        .line-60 { top: 40%; }
+        .line-50 { top: 50%; }
+        .line-40 { top: 60%; }
+        .line-30 { top: 70%; }
+        .line-20 { top: 80%; }
+        .line-10 { top: 90%; }
+        .line-0  { top: 100%; }
+        h1 {
+            font-size: 28px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Fundraiser for the Women's Prison Association!</h1>
+            <p>On November 3rd, 2024, I will be running 26.2 miles for the Women's Prison Association. Please consider donating :)</p>
+            <p>The Women's Prison Association (WPA) provides support for formerly incarcerated women and alternatives for currently incarcerated women. For the last 175 years, the WPA has addressed many of the challenges that lead to incarceration by providing women with case management, employment assistance, and housing among other things. I am happy to chat with you about the cause if you want to learn more.</p>
+            <p>My goal is to raise $3000. If you want me to double your donation via corporate matching, you can Venmo me @BiancaChamp, and I will donate the money in your honor. Otherwise, I can send you a link to the donation page.
+
+            </p>
+        </div>
+        <div class="thermometer-container">
+            <div class="thermometer" id="thermometer"> <!-- Thermometer ID for JavaScript -->
+                <div class="thermometer-text"> <!-- New text container -->
+                    <!-- Text will be updated by JavaScript -->
+                </div>
+            </div>
+            <div class="thermometer-markers">
+                <span>$3000</span>
+                <span>$2700</span>
+                <span>$2400</span>
+                <span>$2100</span>
+                <span>$1800</span>
+                <span>$1500</span>
+                <span>$1200</span>
+                <span>$900</span>
+                <span>$600</span>
+                <span>$300</span>
+                <span>$0</span>
+            </div>
+            <div class="thermometer-lines">
+                <div class="line-90"></div>
+                <div class="line-80"></div>
+                <div class="line-70"></div>
+                <div class="line-60"></div>
+                <div class="line-50"></div>
+                <div class="line-40"></div>
+                <div class="line-30"></div>
+                <div class="line-20"></div>
+                <div class="line-10"></div>
+                <div class="line-0"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Function to set the thermometer height and text
+        function updateThermometer(donationAmount) {
+            const goalAmount = 3000; // Total goal amount
+            const thermometer = document.getElementById('thermometer');
+            const thermometerText = thermometer.querySelector('.thermometer-text');
+            
+            // Calculate percentage of goal reached
+            const percentage = (donationAmount / goalAmount) * 100;
+
+            // Set thermometer height and text
+            thermometer.style.height = percentage + '%';
+            thermometerText.textContent = `$${donationAmount} (${percentage.toFixed(2)}%)`;
+        }
+
+        // Example usage
+        updateThermometer(50); // Set this to the current donation amount
+    </script>
+</body>
+</html>

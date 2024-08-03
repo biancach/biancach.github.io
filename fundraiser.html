@@ -224,7 +224,7 @@
 
             const weeks = Array.from({ length: 16 }, (_, i) => i + 1);
             const miles = [21, 20, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            const money = [0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            const money = [0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50];
 
             const xoffset = 200
             const yoffset = 100
@@ -254,7 +254,7 @@
             ctx.beginPath();
             weeks.forEach((week, index) => {
                 const x = xoffset/2 + (xAxisWidth / (weeks.length - 1)) * index;
-                const y = yAxisHeight + yoffset/2 - (yAxisHeight / (xoffset/2)) * miles[index];
+                const y = yAxisHeight + yoffset/2 - (yAxisHeight / 50) * miles[index];
                 if (index === 0) {
                     ctx.moveTo(x, y);
                 } else {

@@ -11,7 +11,7 @@ function updateThermometer(donationAmount) {
     thermometerText.textContent = `$${donationAmount} (${percentage.toFixed(2)}%)`;
 }
 
-function drawGraph(donationAmount) {
+function drawGraph(miles, money) {
     const canvas = document.getElementById('myGraph');
     const ctx = canvas.getContext('2d');
 
@@ -20,9 +20,7 @@ function drawGraph(donationAmount) {
     canvas.height = 300;
 
     const weeks = Array.from({ length: 16 }, (_, i) => i + 1);
-    const miles = [21, 20, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    const money = [0, 0, donationAmount, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+    
     const xoffset = 200;
     const yoffset = 100;
     const xAxisWidth = canvas.width - xoffset;
@@ -102,7 +100,9 @@ function drawGraph(donationAmount) {
     }
 }
 
-const money = 640
-updateThermometer(money); 
-drawGraph(money);
+const donationAmount = 640
+const miles = [21, 20, 31, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+const money = [0, 0, donationAmount, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+updateThermometer(donationAmount); 
+drawGraph(miles, money);
 window.addEventListener('resize', drawGraph); // Redraw on window resize

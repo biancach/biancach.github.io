@@ -1,0 +1,209 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+.container {
+    display: flex;
+    align-items: flex-start;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.content {
+    flex: 1;
+    max-width: 800px; /* Set a max width for content */
+    padding: 20px;
+}
+.thermometer-container {
+    width: 150px; /* Default width for desktop */
+    height: 400px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 20px;
+}
+.thermometer {
+    background-color: rgb(176, 49, 74);
+    width: 100%;
+    height: 0;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.thermometer-text {
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    text-align: center;
+    padding: 0 10px;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+}
+.thermometer-markers {
+    position: absolute;
+    right: -60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 5px 0;
+}
+.thermometer-markers span {
+    font-size: 14px;
+}
+.thermometer-lines {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.thermometer-lines div {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+    left: 0;
+}
+.line-90 { top: 10%; }
+.line-80 { top: 20%; }
+.line-70 { top: 30%; }
+.line-60 { top: 40%; }
+.line-50 { top: 50%; }
+.line-40 { top: 60%; }
+.line-30 { top: 70%; }
+.line-20 { top: 80%; }
+.line-10 { top: 90%; }
+.line-0  { top: 100%; }
+h1 {
+    font-size: 28px;
+    color: #333;
+}
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+a {
+    color: blue;
+}
+a:visited {
+    color: blue;
+}
+.graph-container {
+    margin-top: 40px;
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Set a max width for graphs */
+}
+canvas {
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    width: 100%;
+}
+.axis-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+.x-axis-label {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+}
+.y-axis-label {
+    position: absolute;
+    top: 75%;
+    left: 30px;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left top;
+    margin-left: 10px;
+}
+.y-axis-label.money {
+    left: auto;
+    right: 30px;
+    top: 70%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: right bottom;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .content {
+        max-width: 100%;
+        text-align: center;
+    }
+    .thermometer-container {
+        margin: 20px auto;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .thermometer-container {
+        width: 100px;
+        height: 300px;
+    }
+    .thermometer-markers {
+        right: -50px;
+    }
+    .thermometer-text {
+        font-size: 14px;
+    }
+    .content h1 {
+        font-size: 24px;
+    }
+    .content p {
+        font-size: 14px;
+    }
+    .axis-label {
+        font-size: 14px;
+    }
+    .graph-container {
+        max-width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    .thermometer-container {
+        width: 80px;
+        height: 250px;
+    }
+    .thermometer-markers {
+        right: -40px;
+    }
+    .thermometer-text {
+        font-size: 12px;
+    }
+    .content h1 {
+        font-size: 20px;
+    }
+    .content p {
+        font-size: 12px;
+    }
+    .axis-label {
+        font-size: 12px;
+    }
+    .graph-container {
+        max-width: 100%;
+    }
+}

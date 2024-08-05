@@ -112,7 +112,7 @@ function drawGraph(miles, money) {
     ctx.textAlign = 'center';
     
     // X-axis label (Weeks)
-    ctx.fillText('Weeks', canvas.width / 2, canvas.height - 10);
+    ctx.fillText('Weeks Until Marathon', canvas.width / 2, canvas.height - 10);
 
     // Y-axis label (Miles)
     ctx.save(); // Save the current context state

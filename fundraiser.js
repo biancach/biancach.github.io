@@ -118,14 +118,14 @@ function drawGraph(miles, money) {
     ctx.save(); // Save the current context state
     ctx.translate(40, canvas.height / 2); // Move the origin
     ctx.rotate(-Math.PI / 2); // Rotate 90 degrees counter-clockwise
-    ctx.fillText('Miles', 0, 0);
+    ctx.fillText('Miles per Week', 0, 0);
     ctx.restore(); // Restore the context state
 
     // Y-axis label (Money)
     ctx.save(); // Save the current context state
     ctx.translate(xoffset + xAxisWidth + 55, canvas.height / 2); // Move to the right of the tick marks
     ctx.rotate(Math.PI / 2); // Rotate 90 degrees clockwise
-    ctx.fillText('Amount Raised', 0, 0);
+    ctx.fillText('Total Amount Raised', 0, 0);
     ctx.restore(); // Restore the context state
 }
 

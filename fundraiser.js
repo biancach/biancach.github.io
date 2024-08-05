@@ -19,7 +19,8 @@ function drawGraph(miles, money) {
     canvas.width = document.querySelector('.graph-container').offsetWidth;
     canvas.height = 300;
 
-    const weeks = Array.from({ length: 16 }, (_, i) => i + 1);
+    const numweeks = miles.length;
+    const weeks = Array.from({ length: numweeks + 1 }, (_, i) => i + 1);
     
     const xoffset = 200;
     const yoffset = 100;
@@ -79,7 +80,7 @@ function drawGraph(miles, money) {
     ctx.font = '14px Arial';
     weeks.forEach((week, index) => {
         const x = xoffset / 2 + (xAxisWidth / (weeks.length - 1)) * index;
-        ctx.fillText(`${week}`, x, yAxisHeight + yoffset / 2 + 20);
+        ctx.fillText(`${week-17}`, x, yAxisHeight + yoffset / 2 + 20);
     });
 
     // Draw Y-axis labels for miles
@@ -101,8 +102,8 @@ function drawGraph(miles, money) {
 }
 
 const donationAmount = 640
-const miles = [21, 20, 31, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
-const money = [0, 0, donationAmount, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+const miles = [21, 20, 31];
+const money = [0, 0, donationAmount];
 updateThermometer(donationAmount); 
 drawGraph(miles, money);
 window.addEventListener('resize', drawGraph); // Redraw on window resize

@@ -13,7 +13,7 @@ body {
 }
 .content {
     flex: 1;
-    max-width: 800px; /* Set a max width for content */
+    max-width: 1000px; /* Set a max width for content */
     padding: 20px;
 }
 .thermometer-container {
@@ -104,9 +104,10 @@ a:visited {
 }
 .graph-container {
     margin-top: 40px;
+    margin-bottom: 40px;
     position: relative;
     width: 100%;
-    max-width: 800px; /* Set a max width for graphs */
+    max-width: 1000px; /* Set a max width for graphs */
 }
 canvas {
     border: 1px solid #ddd;

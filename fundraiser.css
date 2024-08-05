@@ -18,7 +18,7 @@ body {
 }
 .thermometer-container {
     width: 150px; /* Default width for desktop */
-    height: 400px;
+    height: 320px;
     background-color: #e0e0e0;
     border-radius: 10px;
     position: relative;
@@ -114,34 +114,7 @@ canvas {
     background-color: #ffffff;
     width: 100%;
 }
-.axis-label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-}
-.x-axis-label {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 5px;
-}
-.y-axis-label {
-    position: absolute;
-    top: 75%;
-    left: 30px;
-    transform: translateY(-50%) rotate(-90deg);
-    transform-origin: left top;
-    margin-left: 10px;
-}
-.y-axis-label.money {
-    left: auto;
-    right: 30px;
-    top: 70%;
-    transform: translateY(-50%) rotate(90deg);
-    transform-origin: right bottom;
-}
+
 
 /* Responsive styles */
 @media (max-width: 1024px) {

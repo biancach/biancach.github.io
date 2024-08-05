@@ -19,13 +19,17 @@ function drawGraph(miles, money) {
     canvas.width = document.querySelector('.graph-container').offsetWidth;
     canvas.height = 300;
 
+    // Clear the canvas before redrawing
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     const numweeks = miles.length;
     const weeks = Array.from({ length: numweeks + 1 }, (_, i) => i + 1);
     
-    const xoffset = 200;
-    const yoffset = 100;
-    const xAxisWidth = canvas.width - xoffset;
-    const yAxisHeight = canvas.height - yoffset;
+    // Adjusted offsets for extra space
+    const xoffset = 75; // Increased offset to accommodate labels
+    const yoffset = 50; // Increased offset to accommodate labels
+    const xAxisWidth = canvas.width - xoffset * 2;
+    const yAxisHeight = canvas.height - yoffset * 2;
 
     // Draw X and Y axes
     ctx.strokeStyle = '#333';
@@ -33,28 +37,29 @@ function drawGraph(miles, money) {
 
     // X-axis
     ctx.beginPath();
-    ctx.moveTo(xoffset / 2, yAxisHeight + yoffset / 2);
-    ctx.lineTo(xAxisWidth + xoffset / 2, yAxisHeight + yoffset / 2);
+    ctx.moveTo(xoffset, yAxisHeight + yoffset);
+    ctx.lineTo(xAxisWidth + xoffset, yAxisHeight + yoffset);
     ctx.stroke();
 
     // Y-axis for miles
     ctx.beginPath();
-    ctx.moveTo(xoffset / 2, yoffset / 2);
-    ctx.lineTo(xoffset / 2, yAxisHeight + yoffset / 2);
+    ctx.moveTo(xoffset, yoffset);
+    ctx.lineTo(xoffset, yAxisHeight + yoffset);
     ctx.stroke();
 
     // Draw miles data
     ctx.strokeStyle = '#1c2850';
     ctx.lineWidth = 2;
-
     ctx.beginPath();
     weeks.forEach((week, index) => {
-        const x = xoffset / 2 + (xAxisWidth / (weeks.length - 1)) * index;
-        const y = yAxisHeight + yoffset / 2 - (yAxisHeight / 50) * miles[index];
-        if (index === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
+        if (index < miles.length) {
+            const x = xoffset + (xAxisWidth / (weeks.length - 1)) * index;
+            const y = yAxisHeight + yoffset - (yAxisHeight / 50) * miles[index];
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
         }
     });
     ctx.stroke();
@@ -62,15 +67,16 @@ function drawGraph(miles, money) {
     // Draw money data
     ctx.strokeStyle = '#b0314a';
     ctx.lineWidth = 2;
-
     ctx.beginPath();
     weeks.forEach((week, index) => {
-        const x = xoffset / 2 + (xAxisWidth / (weeks.length - 1)) * index;
-        const y = yAxisHeight + yoffset / 2 - (yAxisHeight / 3000) * money[index];
-        if (index === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
+        if (index < money.length) {
+            const x = xoffset + (xAxisWidth / (weeks.length - 1)) * index;
+            const y = yAxisHeight + yoffset - (yAxisHeight / 3000) * money[index];
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
         }
     });
     ctx.stroke();
@@ -79,8 +85,8 @@ function drawGraph(miles, money) {
     ctx.fillStyle = '#333';
     ctx.font = '14px Arial';
     weeks.forEach((week, index) => {
-        const x = xoffset / 2 + (xAxisWidth / (weeks.length - 1)) * index;
-        ctx.fillText(`${week-17}`, x, yAxisHeight + yoffset / 2 + 20);
+        const x = xoffset + (xAxisWidth / (weeks.length - 1)) * index;
+        ctx.fillText(`${week - 17}`, x, yAxisHeight + yoffset + 20);
     });
 
     // Draw Y-axis labels for miles
@@ -89,7 +95,7 @@ function drawGraph(miles, money) {
     const maxmiles = 50;
     for (let i = 0; i <= maxmiles; i += 5) {
         const y = yAxisHeight - (yAxisHeight / maxmiles) * i;
-        ctx.fillText(i, xoffset / 2 - 20, y + yoffset / 2);
+        ctx.fillText(i, xoffset - 20, y + yoffset);
     }
 
     // Draw Y-axis labels for money
@@ -97,13 +103,42 @@ function drawGraph(miles, money) {
     ctx.font = '12px Arial';
     for (let i = 0; i <= 3000; i += 300) {
         const y = yAxisHeight - (yAxisHeight / 3000) * i;
-        ctx.fillText(`$${i}`, xoffset / 2 + xAxisWidth + 10, y + yoffset / 2);
+        ctx.fillText(`$${i}`, xoffset + xAxisWidth + 10, y + yoffset); // Tick marks are drawn to the right
     }
+
+    // Add axis labels
+    ctx.fillStyle = '#333';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    
+    // X-axis label (Weeks)
+    ctx.fillText('Weeks', canvas.width / 2, canvas.height - 10);
+
+    // Y-axis label (Miles)
+    ctx.save(); // Save the current context state
+    ctx.translate(40, canvas.height / 2); // Move the origin
+    ctx.rotate(-Math.PI / 2); // Rotate 90 degrees counter-clockwise
+    ctx.fillText('Miles', 0, 0);
+    ctx.restore(); // Restore the context state
+
+    // Y-axis label (Money)
+    ctx.save(); // Save the current context state
+    ctx.translate(xoffset + xAxisWidth + 55, canvas.height / 2); // Move to the right of the tick marks
+    ctx.rotate(Math.PI / 2); // Rotate 90 degrees clockwise
+    ctx.fillText('Amount Raised', 0, 0);
+    ctx.restore(); // Restore the context state
 }
 
-const donationAmount = 640
+// Initial draw
+const donationAmount = 640;
 const miles = [21, 20, 31];
 const money = [0, 0, donationAmount];
-updateThermometer(donationAmount); 
+updateThermometer(donationAmount);
 drawGraph(miles, money);
-window.addEventListener('resize', drawGraph); // Redraw on window resize
+
+// Redraw on window resize with debounce
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => drawGraph(miles, money), 300);
+});

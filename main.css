@@ -14,7 +14,7 @@ a:visited {
 }
 
 .center {
-  margin: 10px auto; /* Center content horizontally */
+  margin: 10px 0 10px 50px; 
   max-width: 90%; /* Use a percentage for max-width to make it responsive */
   box-sizing: border-box; /* Ensure padding and borders are included in width calculations */
 }
@@ -53,7 +53,9 @@ dd {
   }
 
   .footer {
-    font-size: 0.9rem; /* Slightly smaller text for better readability */
+    margin: 20px 10px 10px 10px ; /* Center the footer block */
+    text-align: center; /* Ensure the text is centered */
+    width: 100%; /* Utilize the full width of the screen */
   }
 
   img {

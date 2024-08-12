@@ -131,8 +131,8 @@ function drawGraph(miles, money) {
 
 // Initial draw
 const donationAmount = 1000;
-const miles = [21, 20, 31, 30];
-const money = [0, 0, 640, donationAmount];
+const miles = [21, 20, 31, 30, 4];
+const money = [0, 0, 640, 1000, donationAmount];
 updateThermometer(donationAmount);
 drawGraph(miles, money);
 

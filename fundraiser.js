@@ -1,14 +1,22 @@
-function updateThermometer(donationAmount) {
+function updateThermometer(donation, matched) {
     const goalAmount = 3000; // Total goal amount
     const thermometer = document.getElementById('thermometer');
+    const thermometer2 = document.getElementById('thermometer2');
     const thermometerText = thermometer.querySelector('.thermometer-text');
+    const thermometer2Text = thermometer2.querySelector('.thermometer-text');
     
-    // Calculate percentage of goal reached
-    const percentage = (donationAmount / goalAmount) * 100;
+    const total = donation + 2*matched;
 
+    // Calculate percentage of goal reached
+    const percentage_donated = (donation+matched)/goalAmount * 100;
+    const percentage_matched = (total / goalAmount) * 100;
+    
     // Set thermometer height and text
-    thermometer.style.height = percentage + '%';
-    thermometerText.textContent = `$${donationAmount} (${percentage.toFixed(2)}%)`;
+    
+    thermometer.style.height = percentage_matched + '%';
+    thermometer2.style.height = percentage_donated + '%';
+    thermometerText.textContent = `$${total} (${percentage_matched.toFixed(2)}%)`;
+    thermometer2Text.textContent = `$${matched} Matched`;
 }
 
 function drawGraph(miles, money) {
@@ -130,10 +138,12 @@ function drawGraph(miles, money) {
 }
 
 // Initial draw
-const donationAmount = 1560;
+const donation = 25;
+const matched = 795;
+const total = donation + 2*matched
 const miles = [21, 20, 31, 30, 30, 4];
-const money = [0, 0, 640, 1000, 1000, donationAmount];
-updateThermometer(donationAmount);
+const money = [0, 0, 640, 1000, 1000, total];
+updateThermometer(donation, matched);
 drawGraph(miles, money);
 
 // Redraw on window resize with debounce

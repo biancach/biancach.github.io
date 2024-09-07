@@ -138,7 +138,7 @@ function drawGraph(miles, money) {
 }
 
 // Initial draw
-const donation = 25;
+const donation = 75;
 const matched = 795;
 const total = donation + 2*matched
 const miles = [21, 20, 31, 30, 30, 36, 37, 23];

@@ -141,8 +141,8 @@ function drawGraph(miles, money) {
 const donation = 75;
 const matched = 795;
 const total = donation + 2*matched
-const miles = [21, 20, 31, 30, 30, 36, 37, 23];
-const money = [0, 0, 640, 1000, 1000, 1615, 1615, total];
+const miles = [21, 20, 31, 30, 30, 36, 37, 40, 0];
+const money = [0, 0, 640, 1000, 1000, 1615, 1615, 1665, total];
 updateThermometer(donation, matched);
 drawGraph(miles, money);
 

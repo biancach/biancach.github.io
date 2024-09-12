@@ -8,7 +8,7 @@ function updateThermometer(donation, matched) {
     const total = donation + 2*matched;
 
     // Calculate percentage of goal reached
-    const percentage_donated = (donation+matched)/goalAmount * 100;
+    const percentage_donated = (matched)/goalAmount * 100;
     const percentage_matched = (total / goalAmount) * 100;
     
     // Set thermometer height and text

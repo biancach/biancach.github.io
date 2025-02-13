@@ -31,7 +31,7 @@ function drawGraph(miles, money) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const numweeks = miles.length;
-    const weeks = Array.from({ length: numweeks + 1 }, (_, i) => i + 1);
+    const weeks = Array.from({ length: numweeks }, (_, i) => i + 1);
     
     // Adjusted offsets for extra space
     const xoffset = 75; // Increased offset to accommodate labels

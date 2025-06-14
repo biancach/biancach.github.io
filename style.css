@@ -1,0 +1,158 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
+  font-size: 16px; 
+}
+
+a {
+  color: #005f99;
+  text-decoration: none;
+}
+
+.spaced-link {
+  margin-right: 15px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+}
+
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.headshot {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.bio h1 {
+  margin-top: 0;
+}
+
+.social-links a {
+  font-weight: 600;
+}
+
+section {
+  margin-top: 2rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+.pub-list, .project-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pub-list li, .project-list li {
+  margin-bottom: 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.project-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-text {
+  flex: 1;
+}
+
+.project-img {
+  width: 250px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 1.5rem;  
+  /* margin-top: 4rem;   */
+}
+
+.pub-sublist {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.pub-sublist li {
+  margin-bottom: 0.5rem;
+}
+
+
+@media (max-width: 768px) {
+  body {
+    font-size: 15px; /* slightly smaller on small screens */
+    padding: 0 1rem;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .headshot {
+    width: 180px;
+    height: 180px;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .project-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .project-img {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 1rem;
+  }
+
+  .project-text {
+    width: 100%;
+  }
+
+  .social-links {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 1rem 0;
+  }
+}

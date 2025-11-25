@@ -5,6 +5,14 @@ body {
   color: #222;
   line-height: 1.6;
   font-size: 16px; 
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;   /* make body fill viewport height */
+}
+
+main {
+  flex: 1;  /* grows to fill space between header and footer */
 }
 
 a {
@@ -70,7 +78,6 @@ footer {
   text-align: center;
   padding: 1rem;
   border-top: 1px solid #ddd;
-  margin-top: 2rem;
   font-size: 0.9rem;
 }
 
@@ -108,6 +115,58 @@ footer {
   margin-bottom: 0.5rem;
 }
 
+/* full-width horizontal line, like header separator */
+.section-separator {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 0; 
+  width: 100%;
+}
+
+.teaching-mentorship {
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+  padding: 2rem 0;  /* vertical spacing for content */
+}
+
+.teaching-mentorship .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.teaching-mentorship .two-columns {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.teaching-mentorship .column {
+  flex: 1;
+  min-width: 250px;
+}
+
+.teaching-mentorship h2 {
+  margin-top: 0;
+}
+
+.class-item, .mentee-item {
+  margin-bottom: 1rem;
+}
+
+.class-item a {
+  font-weight: 600;
+  color: #005f99;
+  text-decoration: none;
+}
+
+.class-meta, .mentee-meta {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
 
 @media (max-width: 768px) {
   body {

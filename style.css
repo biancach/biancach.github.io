@@ -210,6 +210,18 @@ footer {
     margin-top: 1rem;
   }
 
+  /* Make teaching/mentoring section 1-column + centered */
+  .teaching-mentorship .two-columns {
+    flex-direction: column;
+    align-items: center;  /* center the single column */
+    text-align: center;
+  }
+
+  .teaching-mentorship .column {
+    max-width: 500px;  /* keeps content readable */
+    width: 100%;
+  }
+  
   footer {
     font-size: 0.8rem;
     padding: 1rem 0;

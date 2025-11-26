@@ -39,6 +39,13 @@ dd {
   width: 65%
 }
 
+.tagline {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0.2em 0 1em 0;
+}
+
 /* Media query for larger screens */
 @media (min-width: 768px) {
   .center {
@@ -61,4 +68,13 @@ dd {
   img {
     max-width: 100%; /* Ensure images are fully responsive */
   }
+
+  /* Make the tagline smaller and wrap nicely on phones */
+  .tagline {
+    font-size: 0.9rem;    /* Slightly smaller font */
+    line-height: 1.2em;   /* Reduce spacing */
+    text-align: center;    /* Center under your name */
+    margin: 0.2em 0 0.5em 0; 
+  }
 }
+
